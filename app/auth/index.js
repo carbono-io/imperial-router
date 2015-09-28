@@ -6,7 +6,6 @@ var helper = require('./lib/auth-server-wrapper');
 
 module.exports = function (app, etcdManager) {
     app.use(passport.initialize());
-    app.use(passport.authenticate('bearer', { session: false }));
 
     passport.use(new BearerStrategy(
         function (token, done) {
