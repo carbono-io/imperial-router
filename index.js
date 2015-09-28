@@ -13,14 +13,15 @@ var etcdManager = new EtcdManager();
 
 // Parse JSON data in post requests
 app.use(bodyParser.json());
-app.use(config.get('basePath'), baseApp);
-app.authenticate = require('./app/authenticate');
+
+app.use('/imperial', baseApp);
+baseApp.authenticate = require('./app/authenticate');
 
 consign({cwd: 'app'})
     .include('auth')
     .include('controllers')
     .include('routes')
-    .into(app, etcdManager);
+    .into(baseApp, etcdManager);
 
 var server = app.listen(htPort, function() {
     var host = config.get('host');

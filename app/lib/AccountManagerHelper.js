@@ -393,6 +393,7 @@ AccountManager.prototype.createProfile = function (data) {
                 url: '/profiles/',
             }),
             function (err, res) {
+                console.log(err)
                 if (!err) {
                     if (res.statusCode < 300) {
                         try {
