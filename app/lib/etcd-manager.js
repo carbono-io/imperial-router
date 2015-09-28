@@ -18,7 +18,7 @@ var registered      = false;
  *
  * @class EtcdManager
  */
-var EtcdManager = function() {
+var EtcdManager = function () {
     return this;
 };
 

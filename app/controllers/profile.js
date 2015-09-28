@@ -16,7 +16,7 @@ module.exports = function (app, etcdManager) {
         if (req.user !== null && req.user && req.user.emails[0].value) {
             var userData = {
                 email: req.user.emails[0].value,
-            }
+            };
             try {
                 // Discovers with etcdManager the ACCM URL
                 var accmURL = etcdManager.getACCMUrl();
@@ -45,7 +45,7 @@ module.exports = function (app, etcdManager) {
                 'Malformed request - User instance not found');
         }
     };
-    
+
     /**
      * Create a projects
      * @param {Object} req - Request object
@@ -98,7 +98,7 @@ module.exports = function (app, etcdManager) {
                 'Malformed request');
         }
     };
-    
+
     /**
      * Gets a profile from a user id
      * @param {Object} req - Request object
@@ -109,7 +109,7 @@ module.exports = function (app, etcdManager) {
     this.getProfile = function (req, res) {
         var userData = {
             code: req.params.code,
-        }
+        };
         try {
             // Discovers with etcdManager the ACCM URL
             var accmURL = etcdManager.getACCMUrl();

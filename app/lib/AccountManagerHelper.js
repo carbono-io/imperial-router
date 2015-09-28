@@ -46,7 +46,7 @@ AccountManager.prototype.listProjects = function (data) {
                         }
                     } else {
                         try {
-                            var jsonRes = JSON.parse(res.body);
+                            jsonRes = JSON.parse(res.body);
                             deferred.reject({
                                 code: jsonRes.error.code,
                                 message: jsonRes.error.message,
@@ -95,7 +95,7 @@ AccountManager.prototype.buildCreateUpdateProject = function (data) {
                 },
         },
     };
-}
+};
 
 AccountManager.prototype.buildCreateUpdateProfile = function (data) {
     return {
@@ -115,7 +115,7 @@ AccountManager.prototype.buildCreateUpdateProfile = function (data) {
                 },
         },
     };
-}
+};
 
 /**
  * Communicates with Account Manager and creates a project
@@ -129,7 +129,6 @@ AccountManager.prototype.buildCreateUpdateProfile = function (data) {
 AccountManager.prototype.createProject = function (data) {
     var deferred = q.defer();
     try {
-        var options = 
         request(this.buildCreateUpdateProject(
             {
                 method: 'POST',
@@ -214,7 +213,7 @@ AccountManager.prototype.getProject = function (data) {
                         }
                     } else {
                         try {
-                            var jsonRes = JSON.parse(res.body);
+                            jsonRes = JSON.parse(res.body);
                             deferred.reject({
                                 code: jsonRes.error.code,
                                 message: jsonRes.error.message,
@@ -256,7 +255,6 @@ AccountManager.prototype.getProject = function (data) {
 AccountManager.prototype.updateProject = function (data) {
     var deferred = q.defer();
     try {
-        var options = 
         request(this.buildCreateUpdateProject(
             {
                 method: 'PUT',
@@ -341,7 +339,7 @@ AccountManager.prototype.deleteProject = function (data) {
                         }
                     } else {
                         try {
-                            var jsonRes = JSON.parse(res.body);
+                            jsonRes = JSON.parse(res.body);
                             deferred.reject({
                                 code: jsonRes.error.code,
                                 message: jsonRes.error.message,
@@ -382,7 +380,6 @@ AccountManager.prototype.deleteProject = function (data) {
 AccountManager.prototype.createProfile = function (data) {
     var deferred = q.defer();
     try {
-        var options = 
         request(this.buildCreateUpdateProfile(
             {
                 method: 'POST',
@@ -393,7 +390,6 @@ AccountManager.prototype.createProfile = function (data) {
                 url: '/profiles/',
             }),
             function (err, res) {
-                console.log(err)
                 if (!err) {
                     if (res.statusCode < 300) {
                         try {
@@ -446,7 +442,6 @@ AccountManager.prototype.createProfile = function (data) {
 AccountManager.prototype.getProfile = function (data) {
     var deferred = q.defer();
     try {
-        var options = 
         request({
                 uri: this.path + '/profiles/' + data.code,
                 method: 'GET',
@@ -504,47 +499,46 @@ AccountManager.prototype.getProfile = function (data) {
 AccountManager.prototype.getUser = function (data) {
     var deferred = q.defer();
     try {
-        var options = 
         request({
             headers: {
-                    crbemail: data.email,
-                },
-                uri: this.path + '/users/',
-                method: 'GET',
+                crbemail: data.email,
             },
-            function (err, res) {
-                if (!err) {
-                    if (res.statusCode < 300) {
-                        try {
-                            var jsonRes = JSON.parse(res.body);
-                            deferred.resolve(jsonRes.data.items);
-                        } catch (e) {
-                            deferred.reject({
-                                code: 500,
-                                message: e,
-                            });
-                        }
-                    } else {
-                        try {
-                            jsonRes = JSON.parse(res.body);
-                            deferred.reject({
-                                code: jsonRes.error.code,
-                                message: jsonRes.error.message,
-                            });
-                        } catch (e) {
-                            deferred.reject({
-                                code: 500,
-                                message: e,
-                            });
-                        }
+            uri: this.path + '/users/',
+            method: 'GET',
+        },
+        function (err, res) {
+            if (!err) {
+                if (res.statusCode < 300) {
+                    try {
+                        var jsonRes = JSON.parse(res.body);
+                        deferred.resolve(jsonRes.data.items);
+                    } catch (e) {
+                        deferred.reject({
+                            code: 500,
+                            message: e,
+                        });
                     }
                 } else {
-                    deferred.reject({
-                        code: 500,
-                        message: 'Could not get user',
-                    });
+                    try {
+                        jsonRes = JSON.parse(res.body);
+                        deferred.reject({
+                            code: jsonRes.error.code,
+                            message: jsonRes.error.message,
+                        });
+                    } catch (e) {
+                        deferred.reject({
+                            code: 500,
+                            message: e,
+                        });
+                    }
                 }
+            } else {
+                deferred.reject({
+                    code: 500,
+                    message: 'Could not get user',
+                });
             }
+        }
         );
     } catch (e) {
         deferred.reject({

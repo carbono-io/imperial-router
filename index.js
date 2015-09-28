@@ -23,7 +23,7 @@ consign({cwd: 'app'})
     .include('routes')
     .into(baseApp, etcdManager);
 
-var server = app.listen(htPort, function() {
+var server = app.listen(htPort, function () {
     var host = config.get('host');
     var port = config.get('port');
     console.log('Imperial Router listening at http://%s:%s', host, port);

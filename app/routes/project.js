@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(app) {
+module.exports = function (app) {
     var project = app.controllers.project;
 
     app.get('/projects/:code', app.authenticate, project.get);
@@ -7,7 +7,7 @@ module.exports = function(app) {
     app.delete('/projects/:code', app.authenticate, project.delete);
 
     app.get('/projects', app.authenticate, project.list);
-    
+
     app.post('/projects', app.authenticate, project.create);
 
     return this;

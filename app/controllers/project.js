@@ -16,7 +16,7 @@ module.exports = function (app, etcdManager) {
         if (req.user !== null && req.user && req.user.emails[0].value) {
             var userData = {
                 owner: req.user.emails[0].value,
-            }
+            };
             try {
                 // Discovers with etcdManager the ACCM URL
                 var accmURL = etcdManager.getACCMUrl();
@@ -45,7 +45,7 @@ module.exports = function (app, etcdManager) {
                 'Malformed request - User instance not found');
         }
     };
-    
+
     /**
      * Create a projects
      * @param {Object} req - Request object
@@ -63,7 +63,6 @@ module.exports = function (app, etcdManager) {
                 var missingProperties =
                     reqHelper.checkRequiredData(
                         userData, ['owner', 'name', 'description']);
-    
                 if (missingProperties.length) {
                     var errMessage = '';
                     missingProperties.forEach(function (prop) {
@@ -105,7 +104,7 @@ module.exports = function (app, etcdManager) {
                 'Malformed request - User instace not found');
         }
     };
-    
+
     /**
      * Gets a project from a user
      * @param {Object} req - Request object
@@ -119,7 +118,7 @@ module.exports = function (app, etcdManager) {
             var userData = {
                 owner: req.user.emails[0].value,
                 code: req.params.code,
-            }
+            };
             try {
                 // Discovers with etcdManager the ACCM URL
                 var accmURL = etcdManager.getACCMUrl();
@@ -148,7 +147,7 @@ module.exports = function (app, etcdManager) {
                 'Malformed request - User instance not found');
         }
     };
-    
+
     /**
      * Updates a projects
      * @param {Object} req - Request object
@@ -168,7 +167,6 @@ module.exports = function (app, etcdManager) {
                 var missingProperties =
                     reqHelper.checkRequiredData(
                         userData, ['owner', 'name', 'description', 'code']);
-    
                 if (missingProperties.length) {
                     var errMessage = '';
                     missingProperties.forEach(function (prop) {
@@ -210,7 +208,7 @@ module.exports = function (app, etcdManager) {
                 'Malformed request - User instace not found');
         }
     };
-    
+
     /**
      * Deletes a project from a user
      * @param {Object} req - Request object
@@ -224,7 +222,7 @@ module.exports = function (app, etcdManager) {
             var userData = {
                 owner: req.user.emails[0].value,
                 code: req.params.code,
-            }
+            };
             try {
                 // Discovers with etcdManager the ACCM URL
                 var accmURL = etcdManager.getACCMUrl();
