@@ -3,10 +3,12 @@ var config          = require('config');
 var ServiceManager  = require('carbono-service-manager');
 require('colors');
 
-var IMP_SERVICE_KEY  = 'imp';
+var IMP_SERVICE_KEY = 'imp';
 var ACCM_SERVICE_KEY = 'accm';
+var AUTH_SERVICE_KEY = 'auth';
 
 var accmURL         = null;
+var authURL         = null;
 var serviceManager  = null;
 var registered      = false;
 
@@ -16,7 +18,7 @@ var registered      = false;
  *
  * @class EtcdManager
  */
-var EtcdManager = function() {
+var EtcdManager = function () {
     return this;
 };
 
@@ -38,6 +40,7 @@ EtcdManager.prototype.init = function () {
         serviceManager = new ServiceManager(process.env.ETCD_SERVER);
 
         this.findACCM();
+        this.findAuthServer();
         this.register();
     }
 };
@@ -100,6 +103,16 @@ EtcdManager.prototype.findACCM = function () {
         accmURL = url;
     });
 };
+
+/**
+ * Try to find the carbono-auth host ('auth'). It saves the URL at this.authURL.
+ */
+EtcdManager.prototype.findAuthServer = function () {
+    serviceFinder(AUTH_SERVICE_KEY, 'carbono-auth', function (url) {
+        authURL = url;
+    });
+};
+
 /**
  * Try to get accm server url retrieved by etcd.
  *
@@ -107,6 +120,15 @@ EtcdManager.prototype.findACCM = function () {
  */
 EtcdManager.prototype.getACCMUrl = function () {
     return accmURL;
+};
+
+/**
+ * Try to get auth server url retrieved by etcd.
+ *
+ * @return {string} authURL A url to access the carbono-auth address
+ */
+EtcdManager.prototype.getAuthUrl = function () {
+    return authURL;
 };
 
 module.exports = EtcdManager;
