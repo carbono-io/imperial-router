@@ -41,7 +41,7 @@ module.exports = function (app, etcdManager) {
                     e);
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instance not found');
         }
     };
@@ -100,7 +100,7 @@ module.exports = function (app, etcdManager) {
                     'Malformed request');
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instace not found');
         }
     };
@@ -143,7 +143,7 @@ module.exports = function (app, etcdManager) {
                     e);
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instance not found');
         }
     };
@@ -204,7 +204,7 @@ module.exports = function (app, etcdManager) {
                     'Malformed request');
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instace not found');
         }
     };
@@ -247,7 +247,7 @@ module.exports = function (app, etcdManager) {
                     e);
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instance not found');
         }
     };

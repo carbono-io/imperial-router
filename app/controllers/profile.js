@@ -41,8 +41,8 @@ module.exports = function (app, etcdManager) {
                     e);
             }
         } else {
-            reqHelper.createResponse(res, 400,
-                'Malformed request - User instance not found');
+            reqHelper.createResponse(res, 403,
+                'Unauthorized - User instance not found');
         }
     };
 
