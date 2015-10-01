@@ -15,7 +15,7 @@ var etcdManager = new EtcdManager();
 app.use(bodyParser.json());
 
 app.use('/imperial', baseApp);
-baseApp.authenticate = require('./app/authenticate');
+baseApp.authenticate = require('./app/authenticate').auth;
 
 consign({cwd: 'app'})
     .include('auth')
