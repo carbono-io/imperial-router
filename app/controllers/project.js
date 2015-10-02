@@ -43,7 +43,7 @@ module.exports = function () {
                     e);
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instance not found');
         }
     };
@@ -100,7 +100,7 @@ module.exports = function () {
                     'Malformed request');
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instace not found');
         }
     };
@@ -141,7 +141,7 @@ module.exports = function () {
                     e);
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instance not found');
         }
     };
@@ -200,7 +200,7 @@ module.exports = function () {
                     'Malformed request');
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instace not found');
         }
     };
@@ -241,7 +241,7 @@ module.exports = function () {
                     e);
             }
         } else {
-            reqHelper.createResponse(res, 400,
+            reqHelper.createResponse(res, 403,
                 'Malformed request - User instance not found');
         }
     };

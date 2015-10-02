@@ -2,4 +2,4 @@
 
 var passport = require('passport');
 
-module.exports = passport.authenticate('bearer', { session: false });
+module.exports.auth = passport.authenticate('bearer', { session: false });
