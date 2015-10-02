@@ -4,10 +4,9 @@ var uuid = require('node-uuid');
 var AccountManager = require('../lib/AccountManagerHelper');
 var etcd = require('carbono-service-manager');
 
-module.exports = function (app) {
+module.exports = function () {
     var RequestHelper = require('../lib/RequestHelper');
     var reqHelper = new RequestHelper();
-    var accmURL = etcd.getServiceUrl('accm');
 
     /**
      * Gets a profile from user email
@@ -22,7 +21,7 @@ module.exports = function (app) {
                 email: req.user.emails[0].value,
             };
             try {
-                var accm = new AccountManager(accmURL);
+                var accm = new AccountManager(etcd.getServiceUrl('accm'));
                 // Discover correct projectId
                 accm.getUser(userData).then(
                     function (profile) {
@@ -72,7 +71,7 @@ module.exports = function (app) {
                 reqHelper.createResponse(res, 400, errMessage);
             } else {
                 try {
-                    var accm = new AccountManager(accmURL);
+                    var accm = new AccountManager(etcd.getServiceUrl('accm'));
                     // Discover correct projectId
                     accm.createProfile(userData).then(
                         function (profile) {
@@ -111,7 +110,7 @@ module.exports = function (app) {
             code: req.params.code,
         };
         try {
-            var accm = new AccountManager(accmURL);
+            var accm = new AccountManager(etcd.getServiceUrl('accm'));
             // Discover correct projectId
             accm.getProfile(userData).then(
                 function (profile) {

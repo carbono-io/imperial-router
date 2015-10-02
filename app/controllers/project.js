@@ -4,10 +4,10 @@ var uuid = require('node-uuid');
 var AccountManager = require('../lib/AccountManagerHelper');
 var etcd = require('carbono-service-manager');
 
-module.exports = function (app) {
+module.exports = function () {
     var RequestHelper = require('../lib/RequestHelper');
     var reqHelper = new RequestHelper();
-    var accmURL = etcd.getServiceUrl('accm');
+
     /**
      * Lists all projects from a user
      * @param {Object} req - Request object
@@ -21,7 +21,7 @@ module.exports = function (app) {
                 owner: req.user.emails[0].value,
             };
             try {
-                var accm = new AccountManager(accmURL);
+                var accm = new AccountManager(etcd.getServiceUrl('accm'));
                 // Discover correct projectId
                 accm.listProjects(userData).then(
                     function (projects) {
@@ -73,7 +73,8 @@ module.exports = function (app) {
                     reqHelper.createResponse(res, 400, errMessage);
                 } else {
                     try {
-                        var accm = new AccountManager(accmURL);
+                        var accm =
+                            new AccountManager(etcd.getServiceUrl('accm'));
                         // Discover correct projectId
                         accm.createProject(userData).then(
                             function (project) {
@@ -119,7 +120,7 @@ module.exports = function (app) {
                 code: req.params.code,
             };
             try {
-                var accm = new AccountManager(accmURL);
+                var accm = new AccountManager(etcd.getServiceUrl('accm'));
                 // Discover correct projectId
                 accm.getProject(userData).then(
                     function (project) {
@@ -173,7 +174,8 @@ module.exports = function (app) {
                     reqHelper.createResponse(res, 400, errMessage);
                 } else {
                     try {
-                        var accm = new AccountManager(accmURL);
+                        var accm =
+                            new AccountManager(etcd.getServiceUrl('accm'));
                         // Discover correct projectId
                         accm.updateProject(userData).then(
                             function (project) {
@@ -219,7 +221,7 @@ module.exports = function (app) {
                 code: req.params.code,
             };
             try {
-                var accm = new AccountManager(accmURL);
+                var accm = new AccountManager(etcd.getServiceUrl('accm'));
                 // Discover correct projectId
                 accm.deleteProject(userData).then(
                     function (project) {
