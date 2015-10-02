@@ -1,1 +1,1 @@
-module.exports = require('./lib/service-manager');
+module.exports = require('./lib/etcd-manager');

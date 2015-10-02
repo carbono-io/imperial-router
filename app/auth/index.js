@@ -1,15 +1,16 @@
 'use strict';
 
-var passport = require('passport');
+var passport       = require('passport');
+var helper         = require('./lib/auth-server-wrapper');
 var BearerStrategy = require('passport-http-bearer').Strategy;
-var helper = require('./lib/auth-server-wrapper');
+var etcd           = require('carbono-service-manager');
 
-module.exports = function (app, etcdManager) {
+module.exports = function (app) {
     app.use(passport.initialize());
 
     passport.use(new BearerStrategy(
         function (token, done) {
-            var promise = helper.findUser(token, etcdManager.getAuthUrl());
+            var promise = helper.findUser(token, etcd.getServiceUrl('auth'));
 
             if (promise) {
                 promise.then(

@@ -8,9 +8,6 @@ var baseApp     = express();
 
 var htPort = config.get('port');
 
-var EtcdManager = require('./app/lib/etcd-manager.js');
-var etcdManager = new EtcdManager();
-
 // Parse JSON data in post requests
 app.use(bodyParser.json());
 
@@ -21,13 +18,13 @@ consign({cwd: 'app'})
     .include('auth')
     .include('controllers')
     .include('routes')
-    .into(baseApp, etcdManager);
+    .into(baseApp);
 
 var server = app.listen(htPort, function () {
     var host = config.get('host');
     var port = config.get('port');
     console.log('Imperial Router listening at http://%s:%s', host, port);
-    etcdManager.init();
+    require('carbono-service-manager');
 });
 
 module.exports = server;

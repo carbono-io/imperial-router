@@ -8,4 +8,3 @@ var JS_PATH = ['*.js',
 // Pass along gulp reference to import tasks onto your gulp object
 require('./.gulp/gulp')(gulp, JS_PATH);
 require('./.gulp/mygulp')(gulp, JS_PATH);
-
