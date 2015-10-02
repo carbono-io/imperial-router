@@ -1,14 +1,15 @@
 'use strict';
 
-var uuid           = require('node-uuid');
-var etcd           = require('carbono-service-manager');
+var uuid = require('node-uuid');
 var AccountManager = require('../lib/AccountManagerHelper');
+var etcd = require('carbono-service-manager');
 
-module.exports = function () {
+module.exports = function (app) {
     var RequestHelper = require('../lib/RequestHelper');
     var reqHelper = new RequestHelper();
     var accmURL = etcd.getServiceUrl('accm');
-
+    console.log('TESTE -' + etcd);
+    console.log('TESTE -' + accmURL);
     /**
      * Gets a profile from user email
      * @param {Object} req - Request object
@@ -72,6 +73,7 @@ module.exports = function () {
                 reqHelper.createResponse(res, 400, errMessage);
             } else {
                 try {
+                    console.log('ASDADASDDASDSD -' + accmURL);
                     var accm = new AccountManager(accmURL);
                     // Discover correct projectId
                     accm.createProfile(userData).then(

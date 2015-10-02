@@ -1,14 +1,13 @@
 'use strict';
 
-var uuid           = require('node-uuid');
-var etcd           = require('carbono-service-manager');
+var uuid = require('node-uuid');
 var AccountManager = require('../lib/AccountManagerHelper');
+var etcd = require('carbono-service-manager');
 
-module.exports = function () {
+module.exports = function (app) {
     var RequestHelper = require('../lib/RequestHelper');
     var reqHelper = new RequestHelper();
     var accmURL = etcd.getServiceUrl('accm');
-
     /**
      * Lists all projects from a user
      * @param {Object} req - Request object

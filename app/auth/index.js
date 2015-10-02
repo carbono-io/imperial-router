@@ -1,9 +1,9 @@
 'use strict';
 
-var passport       = require('passport');
-var helper         = require('./lib/auth-server-wrapper');
+var passport = require('passport');
 var BearerStrategy = require('passport-http-bearer').Strategy;
-var etcd           = require('carbono-service-manager');
+var helper = require('./lib/auth-server-wrapper');
+var etcd = require('carbono-service-manager');
 
 module.exports = function (app) {
     app.use(passport.initialize());
