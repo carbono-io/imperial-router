@@ -1,7 +1,8 @@
-FROM node:0.10.39
-
-RUN mkdir /src
-WORKDIR /src
-ADD . /src
+FROM node:4.1.2
+COPY . /imperial-router
+WORKDIR /imperial-router
 RUN npm install
-EXPOSE 7890 7891
+
+EXPOSE 7877
+
+CMD ["/bin/sh", "-c", "node ."]
