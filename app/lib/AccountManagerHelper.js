@@ -29,7 +29,7 @@ AccountManager.prototype.listProjects = function (data) {
                 headers: {
                     crbemail: data.owner,
                 },
-                uri: this.path + '/projects',
+                uri: 'http://' + this.path + '/projects',
                 method: 'GET',
             },
             function (err, res) {
@@ -80,7 +80,7 @@ AccountManager.prototype.buildCreateUpdateProject = function (data) {
         headers: {
             crbemail: data.owner,
         },
-        uri: this.path + data.url + data.code,
+        uri: 'http://' + this.path + data.url + data.code,
         method: data.method,
         json: {
             apiVersion: pjson.version,
@@ -99,7 +99,7 @@ AccountManager.prototype.buildCreateUpdateProject = function (data) {
 
 AccountManager.prototype.buildCreateUpdateProfile = function (data) {
     return {
-        uri: this.path + data.url + data.code,
+        uri: 'http://' + this.path + data.url + data.code,
         method: data.method,
         json: {
             apiVersion: pjson.version,
@@ -196,7 +196,7 @@ AccountManager.prototype.getProject = function (data) {
                 headers: {
                     crbemail: data.owner,
                 },
-                uri: this.path + '/projects/' + data.code,
+                uri: 'http://' + this.path + '/projects/' + data.code,
                 method: 'GET',
             },
             function (err, res) {
@@ -322,7 +322,7 @@ AccountManager.prototype.deleteProject = function (data) {
                 headers: {
                     crbemail: data.owner,
                 },
-                uri: this.path + '/projects/' + data.code,
+                uri: 'http://' + this.path + '/projects/' + data.code,
                 method: 'DELETE',
             },
             function (err, res) {
@@ -443,7 +443,7 @@ AccountManager.prototype.getProfile = function (data) {
     var deferred = q.defer();
     try {
         request({
-                uri: this.path + '/profiles/' + data.code,
+                uri: 'http://' + this.path + '/profiles/' + data.code,
                 method: 'GET',
             },
             function (err, res) {
@@ -503,7 +503,7 @@ AccountManager.prototype.getUser = function (data) {
             headers: {
                 crbemail: data.email,
             },
-            uri: this.path + '/users/',
+            uri: 'http://' + this.path + '/users/',
             method: 'GET',
         },
         function (err, res) {
