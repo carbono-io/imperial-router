@@ -6,7 +6,7 @@
         "host": "carbonohost",
         "port": 7877,
         "key" : "imp",
-        "alias" : "Carbono Bromélia Imperial Router"
+        "alias" : "Carbono Bromélia Imperial Router,
         "namespace" : "/imp/",
         "dependencies" : [
             {"key" : "auth", "alias" : "Carbono OAuth2"},
