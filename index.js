@@ -11,7 +11,6 @@ var htPort = config.get('port');
 // Parse JSON data in post requests
 app.use(bodyParser.json());
 
-app.use('/imperial', baseApp);
 baseApp.authenticate = require('./app/authenticate').auth;
 
 consign({cwd: 'app'})
