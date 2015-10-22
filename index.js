@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
     else {
         next();
     }
-});
+}, baseApp);
 
 consign({cwd: 'app'})
     .include('auth')
