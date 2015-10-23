@@ -44,7 +44,7 @@ function extractUser(message) {
  * @function
  */
 function buildRequestOptions(token, authUrl) {
-    var cjm = new CJM({apiVersion: pjson.version});
+var cjm = new CJM({apiVersion: pjson.version});
     cjm.setData({
         id: uuid.v4(),
         items: [
@@ -55,7 +55,7 @@ function buildRequestOptions(token, authUrl) {
     });
 
     return {
-        uri: 'http://' + authUrl + '/bearer/validate',
+        uri: 'http://' + authUrl + 'bearer/validate',
         method: 'POST',
         json: cjm.toObject(),
     };
